@@ -8,7 +8,37 @@
 
 import UIKit
 
+// 버튼 타입을 결정하는 열거형
+public enum CSButtonType {
+    case rect
+    case circle
+}
+
 class CSButton: UIButton {
+    
+    // 저장 프로퍼티 style을 CSButton 클래스에 추가한다. 초기값은 .rect로
+    var style: CSButtonType = .rect {
+        didSet{ // style 프로퍼티에 프로퍼티 옵저버 didSet 블록을 추가함.
+            switch style {
+            case .rect :
+                self.backgroundColor = UIColor.black // 배경을 검은색으로
+                self.layer.borderColor = UIColor.black.cgColor
+                self.layer.borderWidth = 2
+                self.layer.cornerRadius = 0 // 모서리는 전혀 둥글지 않게
+                self.setTitleColor(UIColor.white, for: .normal) // 글씨는 흰색으로
+                self.setTitle("Rect Button", for: .normal) // 기본 문구 설정
+                
+            case .circle :
+                self.backgroundColor = UIColor.red // 배경을 빨간색으로
+                self.layer.borderColor = UIColor.blue.cgColor
+                self.layer.borderWidth = 2
+                self.layer.cornerRadius = 50 // 50만큼 둥글게 처리
+                self.setTitle("Circle Button", for: .normal)
+                
+            }
+        }
+    }
+    
     
     // init(coder:) 는 스토리보드 방식으로 객체를 생성할 때 호출되는 초기화 메소드
     // 스토리보드에서도 객체를 초기화하기 위해 초기화 메소드를 호출한다. 하지만 객체들마다 초기화 메소드 형식이 제각각이라면
@@ -62,4 +92,28 @@ class CSButton: UIButton {
         
         // CGRect.zero 는 CGRect(x: 0, y: 0, width: 0, height: 0)
     }
+    
+    
+    convenience init(type: CSButtonType) {
+            self.init() // 편의 초기화 메소드는 해당 클래스 내부에서 하나의 지정 초기화 메소드를 호출해야함.
+            
+            switch type {
+            case .rect :
+                self.backgroundColor = UIColor.black // 배경을 검은색으로
+                self.layer.borderColor = UIColor.black.cgColor
+                self.layer.borderWidth = 2
+                self.layer.cornerRadius = 0 // 모서리는 전혀 둥글지 않게
+                self.setTitleColor(UIColor.white, for: .normal) // 글씨는 흰색으로
+                self.setTitle("Rect Button", for: .normal) // 기본 문구 설정
+                
+            case .circle :
+                self.backgroundColor = UIColor.red // 배경을 빨간색으로
+                self.layer.borderColor = UIColor.blue.cgColor
+                self.layer.borderWidth = 2
+                self.layer.cornerRadius = 50 // 50만큼 둥글게 처리
+                self.setTitle("Circle Button", for: .normal)
+                
+            }
+        }
+    
 }
