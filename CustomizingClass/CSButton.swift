@@ -24,4 +24,15 @@ class CSButton: UIButton {
         self.layer.borderColor = UIColor.black.cgColor // 테두리는 검은색으로
         self.setTitle("버튼", for: .normal) // 기본 문구 설정
     }
+    
+    // CGRect 타입의 인자값을 입력받는 초기화 메소드를 정의한다.
+    // 프로그래밍 방식으로 버튼 객체를 생성할 때 사용할 메소드
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        self.backgroundColor = UIColor.gray // 배경 회색
+        self.layer.borderColor = UIColor.black.cgColor // 테두리 검은색
+        self.layer.borderWidth = 2 // 테두리 조금 두껍게
+        self.setTitle("코드로 생성된 버튼", for: .normal) // 기본 문구 설정
+    }
 }
